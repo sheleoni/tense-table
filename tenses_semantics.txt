@@ -1,0 +1,30 @@
+Past
+    Simple
+        I played.
+    Continuous/Progressive
+        I was playing.
+    Perfect
+        I had played.
+    Perfect Continuous/ Perfect Progressive
+        I had been playing.
+
+Present
+    Simple
+        I play.
+    Continuous/Progressive
+        I am playing.
+    Perfect
+        I have played.
+    Perfect Continuous/ Perfect Progressive
+        I had beem playing.
+
+Future
+    Simple
+        I will play.
+    Continuous/Progressive
+        I will be playing.
+    Perfect
+        I will have played.        
+    Perfect Continuous/ Perfect Progressive
+        I will have been playing.
+
