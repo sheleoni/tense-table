@@ -20,6 +20,7 @@ const tenseTable = new Vue({
                 // present tense
 
                 // past tense
+
             ]
         }
     }
