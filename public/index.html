@@ -11,6 +11,9 @@
     <!-- animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../src/style.css">
+    <!-- Vue 2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
 </head>
 
 <body>
@@ -23,7 +26,9 @@
         </ul>
     </nav>
     <!-- Big Title -->
-    <h1 class="animate__animated animate__bounce">Tense Table</h1>
+    <h1 class="animate__animated animate__bounce">
+        Tense Table
+    </h1>
 
     <!-- Default Sentence Display -->
     <section id="quiz">
@@ -43,7 +48,6 @@
 
     <!-- /// Tense Table Start /// -->
     <section id="tense-table">
-
         <!-- Timeline -->
         <section id="timeline-heading">
             <div id="line"></div>
@@ -56,14 +60,16 @@
 
         <!-- Score Area -->
         <section id="score-area">
-            <p>Your Score: 🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈</p>
+            <p>Your Score: 🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈
+                {{ bigTitle }}
+            </p>
         </section>
 
         <!-- Past Tense  -->
         <h2 class="past">Past</h2>
         <h3 class="simple">Simple</h3>
-        <p class="past-simple">I <em class="verb">played</em>.</p>
-
+        <p class="past-simple">
+            I <em class="verb">played</em>.</p>
         <h3 class="continuous">Continuous/ Progressive</h3>
         <p class="past-continuous">I was <em class="verb">playing</em>.</p>
 
