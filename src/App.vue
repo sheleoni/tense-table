@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Table />
+    <MenuBar />
+    <TenseTable />
   </div>
 </template>
 
 <script>
-import Table from './components/Table.vue'
+import TenseTable from './components/TenseTable.vue'
+import MenuBar from './components/MenuBar.vue'
 
 export default {
   name: 'App',
   components: {
-    Table
+    TenseTable,
+    MenuBar,
   }
 }
 </script>
