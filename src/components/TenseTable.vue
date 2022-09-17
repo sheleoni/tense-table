@@ -16,8 +16,8 @@
 
     <!-- Score Area -->
     <section id="score-area">
-      <p>Your Score: 🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈
-        {{ bigTitle }}
+      <p>Your Score:
+        {{score}}
       </p>
     </section>
 
@@ -81,73 +81,27 @@ export default {
   },
   data() {
     return {
-      bigTitle: "🦄🦄YO IMMA BIG TITLE🦄🦄🦄",
-      sentenceList: [
-        // future tense
-        {
-          sentence: `I will play.`,
-          tenseTime: 'future',
-          tenseType: 'simple',
+      score: 0,
+      sentences: {
+        past: {
+          simple: `I played.`,
+          continuous: `I was playing.`,
+          perfect: `I had played.`,
+          perfectContinuous: `I had been playing.`,
         },
-        {
-          sentence: `I will be playing.`,
-          tenseTime: 'future',
-          tenseType: 'continuous',
+        present: {
+          simple: `I play.`,
+          continuous: `I am playing.`,
+          perfect: `I have played.`,
+          perfectContinuous: `I have been playing.`,
         },
-        {
-          sentence: `I will have played.`,
-          tenseTime: 'future',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I will have been playing.`,
-          tenseTime: 'future',
-          tenseType: 'perfect continuous',
-        },
-        // present tense
-        {
-          sentence: `I play.`,
-          tenseTime: 'present',
-          tenseType: 'simple',
-        },
-        {
-          sentence: `I am playing.`,
-          tenseTime: 'present',
-          tenseType: 'continuous',
-        },
-        {
-          sentence: `I have played.`,
-          tenseTime: 'present',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I have been playing.`,
-          tenseTime: 'present',
-          tenseType: 'perfect continuous',
-        },
-
-        // past tense
-        {
-          sentence: `I played.`,
-          tenseTime: 'past',
-          tenseType: 'simple',
-        },
-        {
-          sentence: `I was playing.`,
-          tenseTime: 'past',
-          tenseType: 'continuous',
-        },
-        {
-          sentence: `I had played.`,
-          tenseTime: 'past',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I had been playing.`,
-          tenseTime: 'past',
-          tenseType: 'perfect continuous',
-        },
-      ]
+        future: {
+          simple: `I will play.`,
+          continuous: `I will be playing.`,
+          perfect: `I will have played.`,
+          perfectContinuous: `I will have been playing.`,
+        }
+      },
     }
   }
 }
