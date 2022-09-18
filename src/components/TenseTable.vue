@@ -16,54 +16,91 @@
 
     <!-- Score Area -->
     <section id="score-area">
-      <p>Your Score: 🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈🌈
-        {{ bigTitle }}
+      <p>Your Score:
+        {{score}}
       </p>
     </section>
 
     <!-- Past Tense  -->
     <h2 class="past">Past</h2>
+
     <h3 class="simple">Simple</h3>
     <p class="past-simple">
-      I <em class="verb">played</em>.</p>
+      {{ sentences.past.simple }}
+      I <em class="verb">played</em>.
+    </p>
+
     <h3 class="continuous">Continuous/ Progressive</h3>
-    <p class="past-continuous">I was <em class="verb">playing</em>.</p>
+    <p class="past-continuous">
+      {{ sentences.past.continuous }}
+      I was <em class="verb">playing</em>.
+    </p>
 
     <h3 class="perfect">Perfect</h3>
-    <p class="past-perfect">I had <em class="verb">played</em>.</p>
+    <p class="past-perfect">
+      {{ sentences.past.perfect }}
+      I had <em class="verb">played</em>.
+    </p>
 
     <h3 class="perfect-continuous">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="past-perfect-continuous">I had been <em class="verb">playing.</em></p>
+    <p class="past-perfect-continuous">
+      {{ sentences.past.perfectContinuous }}
+      I had been <em class="verb">playing.</em>
+    </p>
 
     <!-- Present Tense -->
     <h2 class="present">Present</h2>
 
     <h3 class="repeated-heading">Simple</h3>
-    <p class="present-simple">I <em class="verb">play</em>.</p>
+    <p class="present-simple">
+      {{ sentences.present.simple}}
+      I <em class="verb">play</em>.
+    </p>
 
     <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p class="present-continuous">I am <em class="verb">playing</em>.</p>
+    <p class="present-continuous">
+      {{ sentences.present.continuous }}
+      I am <em class="verb">playing</em>.
+    </p>
 
     <h3 class="repeated-heading">Perfect</h3>
-    <p class="present-perfect">I have <em class="verb">played</em>.</p>
+    <p class="present-perfect">
+      {{ sentences.present.perfect }}
+      I have <em class="verb">played</em>.
+    </p>
 
     <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="present-perfect-continuous">I have been <em class="verb">playing</em>.</p>
+    <p class="present-perfect-continuous">
+      {{ sentences.present.perfectContinuous}}
+      I have been <em class="verb">playing</em>.
+    </p>
 
     <!-- Future Tense -->
     <h2 class="future">Future</h2>
 
     <h3 class="repeated-heading">Simple</h3>
-    <p class="future-simple">I will <em class="verb">play</em>.</p>
+    <p class="future-simple">
+      {{ sentences.future.simple }}
+      I will <em class="verb">play</em>.
+    </p>
 
     <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p class="future-continuous">I will be <em class="verb">playing</em>.</p>
+    <p class="future-continuous">
+      {{ sentences.future.continuous }}
+      I will be <em class="verb">playing</em>.
+    </p>
 
     <h3 class="repeated-heading">Perfect</h3>
-    <p class="future-perfect">I will have <em class="verb">played</em>.</p>
+    <p class="future-perfect">
+      {{ sentences.future.perfect }}
+      I will have <em class="verb">played</em>.
+    </p>
 
     <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="future-perfect-continuous">I will have been <em class="verb">playing</em>.</p>
+    <p class="future-perfect-continuous">
+      {{ sentences.future.perfectContinuous }}
+      I will have been <em class="verb">playing</em>.
+    </p>
 
 
 
@@ -81,73 +118,27 @@ export default {
   },
   data() {
     return {
-      bigTitle: "🦄🦄YO IMMA BIG TITLE🦄🦄🦄",
-      sentenceList: [
-        // future tense
-        {
-          sentence: `I will play.`,
-          tenseTime: 'future',
-          tenseType: 'simple',
+      score: 0,
+      sentences: {
+        past: {
+          simple: `I played.`,
+          continuous: `I was playing.`,
+          perfect: `I had played.`,
+          perfectContinuous: `I had been playing.`,
         },
-        {
-          sentence: `I will be playing.`,
-          tenseTime: 'future',
-          tenseType: 'continuous',
+        present: {
+          simple: `I play.`,
+          continuous: `I am playing.`,
+          perfect: `I have played.`,
+          perfectContinuous: `I have been playing.`,
         },
-        {
-          sentence: `I will have played.`,
-          tenseTime: 'future',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I will have been playing.`,
-          tenseTime: 'future',
-          tenseType: 'perfect continuous',
-        },
-        // present tense
-        {
-          sentence: `I play.`,
-          tenseTime: 'present',
-          tenseType: 'simple',
-        },
-        {
-          sentence: `I am playing.`,
-          tenseTime: 'present',
-          tenseType: 'continuous',
-        },
-        {
-          sentence: `I have played.`,
-          tenseTime: 'present',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I have been playing.`,
-          tenseTime: 'present',
-          tenseType: 'perfect continuous',
-        },
-
-        // past tense
-        {
-          sentence: `I played.`,
-          tenseTime: 'past',
-          tenseType: 'simple',
-        },
-        {
-          sentence: `I was playing.`,
-          tenseTime: 'past',
-          tenseType: 'continuous',
-        },
-        {
-          sentence: `I had played.`,
-          tenseTime: 'past',
-          tenseType: 'perfect',
-        },
-        {
-          sentence: `I had been playing.`,
-          tenseTime: 'past',
-          tenseType: 'perfect continuous',
-        },
-      ]
+        future: {
+          simple: `I will play.`,
+          continuous: `I will be playing.`,
+          perfect: `I will have played.`,
+          perfectContinuous: `I will have been playing.`,
+        }
+      },
     }
   }
 }
