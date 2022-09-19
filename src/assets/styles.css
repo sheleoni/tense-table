@@ -2,13 +2,10 @@
 
 :root {
     --background-color: rgb(238, 224, 192);
-
     --primary-text-color: rgb(79, 25, 0);
     --primary-content-background-color: rgba(230, 171, 76, 0.928);
     --keyword-color: rgb(165, 40, 40);
-
     --hover-color: rgb(231, 210, 116);
-
 }
 
 html,
