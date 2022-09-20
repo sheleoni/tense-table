@@ -25,82 +25,53 @@
     <h2 class="past">Past</h2>
 
     <h3 class="simple">Simple</h3>
-    <p class="past-simple">
-      {{ sentences.past.simple }}
-      I <em class="verb">played</em>.
-    </p>
+    <p class="past-simple" v-html="sentences.past.simple"></p>
+
 
     <h3 class="continuous">Continuous/ Progressive</h3>
-    <p class="past-continuous">
-      {{ sentences.past.continuous }}
-      I was <em class="verb">playing</em>.
-    </p>
+    <p class="past-continuous" v-html="sentences.past.continuous"></p>
+
 
     <h3 class="perfect">Perfect</h3>
-    <p class="past-perfect">
-      {{ sentences.past.perfect }}
-      I had <em class="verb">played</em>.
-    </p>
+    <p class="past-perfect" v-html="sentences.past.perfect"></p>
+
 
     <h3 class="perfect-continuous">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="past-perfect-continuous">
-      {{ sentences.past.perfectContinuous }}
-      I had been <em class="verb">playing.</em>
-    </p>
+    <p class="past-perfect-continuous" v-html="sentences.past.perfectContinuous"></p>
+
 
     <!-- Present Tense -->
     <h2 class="present">Present</h2>
 
     <h3 class="repeated-heading">Simple</h3>
-    <p class="present-simple">
-      {{ sentences.present.simple}}
-      I <em class="verb">play</em>.
-    </p>
+    <p class="present-simple" v-html="sentences.present.simple"></p>
 
     <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p class="present-continuous">
-      {{ sentences.present.continuous }}
-      I am <em class="verb">playing</em>.
-    </p>
+    <p class="present-continuous" v-html="sentences.present.continuous"></p>
 
     <h3 class="repeated-heading">Perfect</h3>
-    <p class="present-perfect">
-      {{ sentences.present.perfect }}
-      I have <em class="verb">played</em>.
-    </p>
+    <p class="present-perfect" v-html="sentences.present.perfect"></p>
 
     <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="present-perfect-continuous">
-      {{ sentences.present.perfectContinuous}}
-      I have been <em class="verb">playing</em>.
-    </p>
+    <p class="present-perfect-continuous" v-html="sentences.present.perfectContinuous"></p>
+
 
     <!-- Future Tense -->
     <h2 class="future">Future</h2>
 
     <h3 class="repeated-heading">Simple</h3>
-    <p class="future-simple">
-      {{ sentences.future.simple }}
-      I will <em class="verb">play</em>.
-    </p>
+    <p class="future-simple" v-html="sentences.future.simple"></p>
 
     <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p class="future-continuous">
-      {{ sentences.future.continuous }}
-      I will be <em class="verb">playing</em>.
-    </p>
+    <p class="future-continuous" v-html="sentences.future.continuous"></p>
+
 
     <h3 class="repeated-heading">Perfect</h3>
-    <p class="future-perfect">
-      {{ sentences.future.perfect }}
-      I will have <em class="verb">played</em>.
-    </p>
+    <p class="future-perfect" v-html="sentences.future.perfect"></p>
+
 
     <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p class="future-perfect-continuous">
-      {{ sentences.future.perfectContinuous }}
-      I will have been <em class="verb">playing</em>.
-    </p>
+    <p class="future-perfect-continuous" v-html="sentences.future.perfectContinuous"></p>
 
   </section>
 
@@ -117,22 +88,22 @@ export default {
       score: 0,
       sentences: {
         past: {
-          simple: `I played.`,
-          continuous: `I was playing.`,
-          perfect: `I had played.`,
-          perfectContinuous: `I had been playing.`,
+          simple: `I <em class="verb">played</em>.`,
+          continuous: `I was <em class="verb">playing</em>.`,
+          perfect: `I had <em class="verb">played</em>.`,
+          perfectContinuous: `I had been <em class="verb">playing.</em>`,
         },
         present: {
-          simple: `I play.`,
-          continuous: `I am playing.`,
-          perfect: `I have played.`,
-          perfectContinuous: `I have been playing.`,
+          simple: `I <em class="verb">play</em>.`,
+          continuous: `I am <em class="verb">playing</em>.`,
+          perfect: `I have <em class="verb">played</em>.`,
+          perfectContinuous: `I have been <em class= "verb" >playing</em>.`,
         },
         future: {
-          simple: `I will play.`,
-          continuous: `I will be playing.`,
-          perfect: `I will have played.`,
-          perfectContinuous: `I will have been playing.`,
+          simple: `I will <em class="verb">play</em>.`,
+          continuous: `I will be <em class="verb">playing</em>.`,
+          perfect: `I will have <em class="verb">played</em>.`,
+          perfectContinuous: `I will have been <em class="verb">playing</em>.`,
         }
       },
     }
@@ -140,7 +111,3 @@ export default {
 }
 
 </script>
-
-<style>
-/* @import ("src/assets/styles.css"); */
-</style>
