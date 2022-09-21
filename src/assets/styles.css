@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Patrick+Hand&family=Short+Stack&display=swap');
+
+:root {
+    --background-color: rgb(238, 224, 192);
+    --primary-text-color: rgb(79, 25, 0);
+    --primary-content-background-color: rgba(230, 171, 76, 0.928);
+    --keyword-color: rgb(165, 40, 40);
+    --hover-color: rgb(231, 210, 116);
+}
+
+html,
+body {
+    /* font-family: 'Gloria Hallelujah', cursive; */
+    margin: 0px;
+    background-color: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
+    display: grid;
+    background-color: var(--background-color);
+    border: 3px solid;
+    border-color: var(--primary-content-background-color);
+}
+
+nav {
+    background-color: var(--primary-content-background-color);
+    top: 0;
+    display: flex;
+    position: sticky;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: 0px;
+    padding-inline-start: 0px;
+    margin-block: 0.5rem;
+    font-size: 2rem;
+}
+
+nav ul li {
+    list-style: none;
+    margin: 0.25rem;
+    margin-inline: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* Quiz area (mobile view) */
+
+em.selected-tense {
+    display: inline-block;
+    /* making the <em> an inline-block allows the keywords to be animated with animate.css! */
+
+    animation: bounceIn;
+    animation-duration: 1s;
+}
+
+em.selected-tense .clicked {
+    color: var(--primary-content-background-color);
+    display: inline-block;
+
+    animation: rubberBand;
+    animation-duration: 1s;
+}
+
+em.selected-time {
+    display: inline-block;
+    /* making the <em> an inline-block allows the keywords to be animated with animate.css! */
+
+    animation: bounceIn;
+    animation-duration: 1s;
+}
+
+
+em.selected-time .clicked {
+    color: var(--primary-content-background-color);
+    display: inline-block;
+
+    animation: rubberBand;
+    animation-duration: 1s;
+}
+
+
+#quiz {
+    color: blue;
+}
+
+fieldset.quiz-input {
+    border: none;
+    text-align: center;
+    background-color: var(--primary-content-background-color);
+    border-radius: 15px;
+    margin-inline: 10%;
+
+    display: none;
+    /* Hide the quiz area until the user clicks the start button */
+}
+
+::placeholder {
+    color: red;
+}
+
+input[type="text" i] {
+    font-size: 1.25rem;
+    font-family: 'Short Stack', cursive;
+}
+
+#quiz>fieldset>button {
+    font-size: 1rem;
+    font-family: 'Short Stack', cursive;
+}
+
+
+
+/* Tense Table (mobile view) */
+#tense-table {
+    padding: 1rem;
+    gap: 0.5rem;
+    color: var(--primary-text-color);
+    display: grid;
+    grid-template: 0.25fr 1fr repeat(4, 1fr)/ 1fr repeat(3, 1fr);
+    grid-template-areas: "score-area         timeline-heading          timeline-heading                  timeline-heading"
+        "score-area         past                      present                           future"
+        "simple             past-simple               present-simple                    future-simple"
+        "continuous         past-continuous           present-continuous                future-continuous"
+        "perfect            past-perfect              present-perfect                   future-perfect"
+        "perfect-continuous past-perfect-continuous   present-perfect-continuous        future-perfect-continuous";
+}
+
+/* add background color to individual cells and center content horizontally and vertically as flex items */
+
+#tense-table>* {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background-color: var(--primary-content-background-color);
+    padding: 1rem;
+    transition: 0.3s;
+    /* transition property should be put onto the parent of the :hover pseudoclass */
+
+}
+
+
+
+#tense-table>*>p {
+    align-items: center;
+
+}
+
+#tense-table em {
+    color: var(--keyword-color);
+    font-style: normal;
+    display: contents;
+
+}
+
+/* add hover color for individual grid cells */
+
+#tense-table>*:hover {
+    background-color: var(--hover-color);
+    cursor: default;
+    /* transition: 50ms; transition property should be put onto the parent of the :hover pseudoclass? YES */
+}
+
+#tense-table>*:active {
+    background-color: red;
+}
+
+
+/* problem: when sreen width goes BELOW 310px, margin on the left shows - not removeable by specifying body { margin: 0px }; */
+
+
+/* time points headings */
+
+#timeline-heading {
+    grid-area: timeline-heading;
+    display: grid;
+    /* grid-template-area: "timeline-past timeline-present timeline-future"; */
+    grid-template: 1fr/ repeat(3, 1fr);
+    padding-inline: 0px;
+    color: blue;
+    grid-template-areas: "timeline-past timeline-present timeline-future";
+    position: relative;
+}
+
+#timeline-past {
+    grid-area: timeline-past;
+}
+
+#timeline-present {
+    grid-area: timeline-present;
+}
+
+#timeline-future {
+    grid-area: timeline-future;
+}
+
+
+#timeline-heading>*:not(#line) {
+    z-index: 100;
+    display: block;
+}
+
+
+
+#line {
+    /* experiment of adding line across the timeline */
+    position: absolute;
+    /* absolute positioning to force the #line to flow on the first grid */
+    grid-area: timeline-past;
+    /* justify-self: center; */
+    color: red;
+    z-index: 0;
+    width: 201%;
+    /* width relative to the nearest position: absolute/relative parent */
+    margin-inline-start: 50%;
+    height: 2px;
+    background-color: red;
+    margin-block-start: -2px;
+
+}
+
+/* CSS-generated arrow head visual elements from: https://www.w3schools.com/howto/howto_css_arrows.asp */
+
+.arrow {
+    border: solid red;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 4px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    display: none;
+}
+
+
+.past {
+    grid-area: past;
+}
+
+.present {
+    grid-area: present;
+}
+
+.future {
+    grid-area: future;
+}
+
+/* tense type headings */
+.simple {
+    grid-area: simple;
+}
+
+.continuous {
+    grid-area: continuous;
+}
+
+.perfect {
+    grid-area: perfect;
+}
+
+.perfect-continuous {
+    grid-area: perfect-continuous;
+}
+
+#tense-table>.perfect-continuous>h3 {
+    font-size: 0.5rem;
+}
+
+/* table contents */
+
+.past-simple {
+    grid-area: past-simple;
+}
+
+.past-continuous {
+    grid-area: past-continuous;
+}
+
+.past-perfect {
+    grid-area: past-perfect;
+}
+
+.past-perfect-continuous {
+    grid-area: past-perfect-continuous;
+}
+
+.present-simple {
+    grid-area: present-simple;
+}
+
+.present-continuous {
+    grid-area: present-continuous;
+}
+
+.present-perfect {
+    grid-area: present-perfect;
+}
+
+.present-perfect-continuous {
+    grid-area: present-perfect-continuous;
+}
+
+.future-simple {
+    grid-area: future-simple;
+}
+
+.future-continuous {
+    grid-area: future-continuous;
+}
+
+.future-perfect {
+    grid-area: future-perfect;
+}
+
+.future-perfect-continuous {
+    grid-area: future-perfect-continuous;
+}
+
+/* coin area */
+
+#score-area {
+    grid-area: score-area;
+    /* position: relative; */
+    display: flex;
+    padding: 1rem;
+    font-size: 1rem;
+    /* width: 700px; */
+}
+
+#little-unicorn {
+    /* width: 80%; */
+    max-width: 100%;
+    max-height: 100%;
+    /* question: how to size the image relative to the parent container? */
+
+    /* adding padding seems to position little unicorn 
+    inside the grid without it going out!! how come! 
+    maybe padding is relative to the grid cell  */
+}
+
+
+/* hide repeated headings */
+
+#tense-table>.repeated-heading {
+    display: none;
+}
+
+p,
+h1,
+h2,
+h3 {
+    text-align: center;
+    margin: 0px;
+}
+
+#tense-table>p {
+    font-size: 1.25rem;
+}
+
+/* heading fonts */
+
+h1,
+h2 {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+h3 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5rem;
+}
+
+#tense-table>h3 {
+    font-size: 1.75rem;
+}
+
+p {
+    font-family: 'Short Stack', cursive;
+}
+
+
+
+/* for larger displays */
+
+@media (min-width: 800px) {
+
+    #tense-table {
+        color: var(--primary-text-color);
+        margin: 0px;
+    }
+
+    #tense-table {
+        padding: 1rem;
+        height: 80vh;
+        gap: 0.5rem;
+        color: var(--primary-text-color);
+        display: grid;
+        grid-template: 0.5fr repeat(3, 1fr)/ 0.3fr repeat(5, 1fr);
+        grid-template-areas: "score-area         score-area     simple           continuous          perfect         perfect-continuous"
+            "timeline-heading   future         future-simple    future-continuous   future-perfect  future-perfect-continuous"
+            "timeline-heading   present        present-simple   present-continuous  present-perfect present-perfect-continuous"
+            "timeline-heading   past           past-simple      past-continuous     past-perfect    past-perfect-continuous"
+        ;
+    }
+
+    #timeline-heading {
+        grid-area: timeline-heading;
+        display: grid;
+        /* grid-template-area: "timeline-past timeline-present timeline-future"; */
+        grid-template: repeat(3, 1fr) / 1fr;
+        padding-inline: 0px;
+        color: blue;
+        grid-template-areas: "timeline-future"
+            "timeline-present"
+            "timeline-past";
+        position: relative;
+    }
+
+    #line {
+        /* changing the grid area of the line in desktop view and re-positioning the visual element */
+        position: absolute;
+        grid-area: timeline-present;
+        color: red;
+        z-index: 0;
+        height: 204%;
+        width: 3%;
+        min-width: 3px;
+        background-color: red;
+        margin-inline-start: 48.5%;
+
+    }
+
+    .arrow {
+        border: solid red;
+        border-width: 0 4px 4px 0;
+        display: inline-block;
+        padding: 4px;
+    }
+
+    .right {
+        display: none;
+    }
+
+    .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+}
