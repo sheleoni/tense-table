@@ -1,6 +1,4 @@
 <template>
-
-
   <!-- /// Tense Table Start /// -->
   <section id="tense-table">
     <!-- Timeline -->
@@ -16,9 +14,15 @@
 
     <!-- Score Area -->
     <section id="score-area">
-      <p>Your Score:
-        {{score}}
-      </p>
+      <template v-if="isGameStarted">
+        <p>Your Score:
+          {{score}}
+        </p>
+      </template>
+      <template v-else>
+        <button @click="startGame()">Start Game!</button>
+      </template>
+
     </section>
 
     <!-- Past Tense  -->
@@ -85,6 +89,8 @@ export default {
   },
   data() {
     return {
+      playGame: `<button> Start Game </button>`,
+      isGameStarted: false,
       score: 0,
       sentences: {
         past: {
@@ -106,6 +112,11 @@ export default {
           perfectContinuous: `I will have been <em class="verb">playing</em>.`,
         }
       },
+    }
+  },
+  methods: {
+    startGame() {
+      this.isGameStarted = true;
     }
   }
 }
