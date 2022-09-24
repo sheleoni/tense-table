@@ -30,5 +30,5 @@ npm run serve
 ```
 Tada! 🎉
 
-<img src="https://user-images.githubusercontent.com/85994674/190958729-a569361a-e817-40f1-91b0-fb33bdcd8c3c.png" height="100px">
+<img src="https://user-images.githubusercontent.com/85994674/190958729-a569361a-e817-40f1-91b0-fb33bdcd8c3c.png" height="100px" alt="Sheleoni's signature in white">
 
