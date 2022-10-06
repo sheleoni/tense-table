@@ -38,7 +38,10 @@
     </p>
 
     <!-- Past Continuous -->
-    <h3 class="continuous">Continuous/ Progressive</h3>
+    <h3 class="continuous" @click="switchContinuousProgressive()">
+      <template v-if="isContinuous">Continuous</template>
+      <template v-else>Progressive</template>
+    </h3>
 
     <p v-if="isOccluded === false" class="past-continuous" v-html="sentences.past.continuous"></p>
     <p v-else class="past-continuous">
@@ -54,7 +57,13 @@
 
 
     <!-- Past Perfect Continuous -->
-    <h3 class="perfect-continuous">Perfect Continuous/ Perfect Progressive</h3>
+    <h3 class="perfect-continuous" @click="switchContinuousProgressive()">
+      <template v-if="isContinuous">Perfect Continuous</template>
+      <template v-else>Perfect Progressive</template>
+    </h3>
+
+
+
     <p v-if="isOccluded === false" class="past-perfect-continuous" v-html="sentences.past.perfectContinuous"></p>
     <p v-else class="past-perfect-continuous">
       <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
@@ -137,6 +146,8 @@
 </template>
 
 <script>
+// import { isContext } from 'vm';
+
 export default {
   name: 'TenseTable',
   props: {
@@ -144,9 +155,12 @@ export default {
   },
   data() {
     return {
+
       playGame: `<button> Start Game </button>`,
       isGameStarted: false,
       isOccluded: false,
+      // heading: Continuous or Progressive (Continuous by default)
+      isContinuous: true,
       occluderImages: [`Yellow_Cloud.png`, `Yellow_Cloud2.png`],
       occluderImageWidth: `100%`,
       score: 0,
@@ -177,6 +191,11 @@ export default {
     startGame() {
       this.isGameStarted = true;
       this.occludeSentences();
+    },
+    switchContinuousProgressive() {
+      this.isContinuous = !this.isContinuous;
+      console.log("switched!");
+      console.log(this.isContinuous);
     },
     occludeSentences() {
       this.isOccluded = true;
