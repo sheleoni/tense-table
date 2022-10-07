@@ -1,152 +1,165 @@
+
 <template>
 
   <!-- /// Tense Table Start /// -->
-  <section id="tense-table">
-    <!-- Timeline -->
-    <section id="timeline-heading">
-      <div id="line"></div>
-      <p id="timeline-past" alt="A cross (❌) on the timeline indicating the past.">❌</p>
-      <p id="timeline-present" alt="A cross (❌) on the timeline indicating the present.">❌</p>
-      <p id="timeline-future" alt="An arrowhead on the timeline indicating the future.">
-        <span class="arrow right"></span> <!-- show right arrow in desktop view-->
-        <span class="arrow up"></span> <!-- show right arrow in smartphone view-->
-      </p>
-    </section>
+  <section id="app">
 
-    <!-- Score Area -->
-    <section id="score-area">
+    <section id="gameDisplay">
       <template v-if="isGameStarted">
-        <p>Your Score:
-          {{score}}
-        </p>
+        <p v-html="selectedSentence"></p>
       </template>
-      <template v-else>
-        <button @click="startGame()">Start Game!</button>
-      </template>
-
     </section>
 
-    <!-- /// Past Tense /// -->
-    <h2 class="past">Past</h2>
+    <section id="tense-table">
+      <!-- TimelinrandomSentencee -->
+      <section id="timeline-heading">
+        <div id="line"></div>
+        <p id="timeline-past" alt="A cross (❌) on the timeline indicating the past.">❌</p>
+        <p id="timeline-present" alt="A cross (❌) on the timeline indicating the present.">❌</p>
+        <p id="timeline-future" alt="An arrowhead on the timeline indicating the future.">
+          <span class="arrow right"></span> <!-- show right arrow in desktop view-->
+          <span class="arrow up"></span> <!-- show right arrow in smartphone view-->
+        </p>
+      </section>
 
-    <h3 class="simple">Simple</h3>
+      <!-- Score Area -->
+      <section id="score-area">
+        <template v-if="isGameStarted">
+          <p>Your Score:
+            {{score}}
+          </p>
+        </template>
+        <template v-else>
+          <button @click="startGame()">Start Game!</button>
+        </template>
 
-    <!-- Past Simple -->
-    <p v-if="isOccluded === false" class="past-simple" v-html="sentences.past.simple"></p>
-    <p v-else class="past-simple">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      </section>
 
-    <!-- Past Continuous -->
-    <h3 class="continuous" @click="switchContinuousProgressive()">
-      <template v-if="isContinuous">Continuous</template>
-      <template v-else>Progressive</template>
-    </h3>
+      <!-- /// Past Tense /// -->
+      <h2 class="past">Past</h2>
 
-    <p v-if="isOccluded === false" class="past-continuous" v-html="sentences.past.continuous"></p>
-    <p v-else class="past-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <h3 class="simple">Simple</h3>
 
-    <!-- Past Perfect -->
-    <h3 class="perfect">Perfect</h3>
-    <p v-if="isOccluded === false" class="past-perfect" v-html="sentences.past.perfect"></p>
-    <p v-else class="past-perfect">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- Past Simple -->
+      <p v-if="isOccluded === false" class="past-simple" v-html="sentences.past.simple"></p>
+      <p v-else class="past-simple">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
+      <!-- Past Continuous -->
+      <h3 class="continuous" @click="switchContinuousProgressive()">
+        <template v-if="isContinuous">Continuous</template>
+        <template v-else>Progressive</template>
+      </h3>
 
-    <!-- Past Perfect Continuous -->
-    <h3 class="perfect-continuous" @click="switchContinuousProgressive()">
-      <template v-if="isContinuous">Perfect Continuous</template>
-      <template v-else>Perfect Progressive</template>
-    </h3>
+      <p v-if="isOccluded === false" class="past-continuous" v-html="sentences.past.continuous"></p>
+      <p v-else class="past-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
-
-
-    <p v-if="isOccluded === false" class="past-perfect-continuous" v-html="sentences.past.perfectContinuous"></p>
-    <p v-else class="past-perfect-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
-
-
-    <!-- /// Present Tense /// -->
-    <h2 class="present">Present</h2>
-
-    <!-- Present Simple -->
-    <h3 class="repeated-heading">Simple</h3>
-    <p v-if="isOccluded === false" class="present-simple" v-html="sentences.present.simple"></p>
-    <p v-else class="present-simple">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
-
-
-    <!-- Present Continuous -->
-    <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p v-if="isOccluded === false" class="present-continuous" v-html="sentences.present.continuous"></p>
-    <p v-else class="present-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- Past Perfect -->
+      <h3 class="perfect">Perfect</h3>
+      <p v-if="isOccluded === false" class="past-perfect" v-html="sentences.past.perfect"></p>
+      <p v-else class="past-perfect">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
 
-    <!-- Present Perfect -->
-    <h3 class="repeated-heading">Perfect</h3>
-    <p v-if="isOccluded === false" class="present-perfect" v-html="sentences.present.perfect"></p>
-    <p v-else class="present-perfect">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
-
-
-    <!-- Present Perfect Continuous -->
-    <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p v-if="isOccluded === false" class="present-perfect-continuous" v-html="sentences.present.perfectContinuous"></p>
-    <p v-else class="present-perfect-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- Past Perfect Continuous -->
+      <h3 class="perfect-continuous" @click="switchContinuousProgressive()">
+        <template v-if="isContinuous">Perfect Continuous</template>
+        <template v-else>Perfect Progressive</template>
+      </h3>
 
 
 
-    <!-- /// Future Tense /// -->
-    <h2 class="future">Future</h2>
-
-    <!-- Future Simple -->
-    <h3 class="repeated-heading">Simple</h3>
-    <p v-if="isOccluded === false" class="future-simple" v-html="sentences.future.simple"></p>
-    <p v-else class="future-simple">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <p v-if="isOccluded === false" class="past-perfect-continuous" v-html="sentences.past.perfectContinuous"></p>
+      <p v-else class="past-perfect-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
 
-    <!-- Future Continuous -->
-    <h3 class="repeated-heading">Continuous/ Progressive</h3>
-    <p v-if="isOccluded === false" class="future-continuous" v-html="sentences.future.continuous"></p>
-    <p v-else class="future-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- /// Present Tense /// -->
+      <h2 class="present">Present</h2>
+
+      <!-- Present Simple -->
+      <h3 class="repeated-heading">Simple</h3>
+      <p v-if="isOccluded === false" class="present-simple" v-html="sentences.present.simple"></p>
+      <p v-else class="present-simple">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
 
-    <!-- Future Perfect -->
-    <h3 class="repeated-heading">Perfect</h3>
-    <p v-if="isOccluded === false" class="future-perfect" v-html="sentences.future.perfect"></p>
-    <p v-else class="future-perfect">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- Present Continuous -->
+      <h3 class="repeated-heading">Continuous/ Progressive</h3>
+      <p v-if="isOccluded === false" class="present-continuous" v-html="sentences.present.continuous"></p>
+      <p v-else class="present-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
 
-    <!-- Future Perfect Continuous -->
-    <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
-    <p v-if="isOccluded === false" class="future-perfect-continuous" v-html="sentences.future.perfectContinuous"></p>
-    <p v-else class="future-perfect-continuous">
-      <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
-    </p>
+      <!-- Present Perfect -->
+      <h3 class="repeated-heading">Perfect</h3>
+      <p v-if="isOccluded === false" class="present-perfect" v-html="sentences.present.perfect"></p>
+      <p v-else class="present-perfect">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
 
 
+      <!-- Present Perfect Continuous -->
+      <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
+      <p v-if="isOccluded === false" class="present-perfect-continuous" v-html="sentences.present.perfectContinuous">
+      </p>
+      <p v-else class="present-perfect-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
+
+
+
+      <!-- /// Future Tense /// -->
+      <h2 class="future">Future</h2>
+
+      <!-- Future Simple -->
+      <h3 class="repeated-heading">Simple</h3>
+      <p v-if="isOccluded === false" class="future-simple" v-html="sentences.future.simple"></p>
+      <p v-else class="future-simple">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
+
+
+      <!-- Future Continuous -->
+      <h3 class="repeated-heading">Continuous/ Progressive</h3>
+      <p v-if="isOccluded === false" class="future-continuous" v-html="sentences.future.continuous"></p>
+      <p v-else class="future-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
+
+
+      <!-- Future Perfect -->
+      <h3 class="repeated-heading">Perfect</h3>
+      <p v-if="isOccluded === false" class="future-perfect" v-html="sentences.future.perfect"></p>
+      <p v-else class="future-perfect">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
+
+
+      <!-- Future Perfect Continuous -->
+      <h3 class="repeated-heading">Perfect Continuous/ Perfect Progressive</h3>
+      <p v-if="isOccluded === false" class="future-perfect-continuous" v-html="sentences.future.perfectContinuous"></p>
+      <p v-else class="future-perfect-continuous">
+        <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
+      </p>
+
+
+    </section>
   </section>
 
 </template>
 
 <script>
 // import { isContext } from 'vm';
+
+// import internal from 'stream';
 
 export default {
   name: 'TenseTable',
@@ -159,8 +172,8 @@ export default {
       playGame: `<button> Start Game </button>`,
       isGameStarted: false,
       isOccluded: false,
-      // heading: Continuous or Progressive (Continuous by default)
       isContinuous: true,
+      selectedSentence: "",
       occluderImages: [`Yellow_Cloud.png`, `Yellow_Cloud2.png`],
       occluderImageWidth: `100%`,
       score: 0,
@@ -184,6 +197,7 @@ export default {
           perfectContinuous: `I will have been <em class="verb">playing</em>.`,
         }
       },
+      dummyData: { name: "hi" },
 
     }
   },
@@ -191,6 +205,13 @@ export default {
     startGame() {
       this.isGameStarted = true;
       this.occludeSentences();
+      this.randomSentence();
+    },
+    randomSentence() {
+      const sentenceList = this.sentenceList;
+      let randomSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)]
+      console.log(randomSentence);
+      this.selectedSentence = randomSentence;
     },
     switchContinuousProgressive() {
       this.isContinuous = !this.isContinuous;
@@ -204,11 +225,26 @@ export default {
     randomOccluderImage() {
       const images = this.occluderImages;
       const randomImage = images[Math.floor(Math.random() * images.length)];
-      console.log(randomImage);
       return randomImage;
     }
 
+  },
+  computed: {
+    sentenceList: function () {
+      const sentenceObject = JSON.parse(JSON.stringify(this.sentences));
+      const sentenceList = [];
+      for (let tenseType in sentenceObject) {
+        for (let sentenceType in sentenceObject[tenseType]) {
+          let sentence = sentenceObject[tenseType][sentenceType];
+          sentenceList.push(sentence);
+        }
+      }
+      return sentenceList
+    }
   }
 }
 
+
+// console.log("hello yo!");
+// console.log(sentenceList); out of scope? out of Vue Scope
 </script>
