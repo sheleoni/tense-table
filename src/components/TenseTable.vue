@@ -4,14 +4,22 @@
   <!-- /// Tense Table Start /// -->
   <section id="app">
 
+    <!-- Game area: sentence display -->
     <section id="gameDisplay">
       <template v-if="isGameStarted">
-        <p v-html="selectedSentence"></p>
+        <p v-html="shuffledSentenceList[currentDisplayNumber]" />
+        <p>{{ checkTenseType() }} {{ tenseType }}</p>
+        <button @click="showNextSentence()">Next Sentence</button>
       </template>
+      <!-- Add onClick function each cell? or add handler based on grid template area? -->
+      <!-- Use this.tenseType to match class name of each cell. 
+        If this.tenseType === cell's classname, 
+        THEN correct
+        THEN add one score -->
     </section>
 
     <section id="tense-table">
-      <!-- TimelinrandomSentencee -->
+      <!-- Timeline Visuals -->
       <section id="timeline-heading">
         <div id="line"></div>
         <p id="timeline-past" alt="A cross (❌) on the timeline indicating the past.">❌</p>
@@ -39,7 +47,6 @@
       <h2 class="past">Past</h2>
 
       <h3 class="simple">Simple</h3>
-
       <!-- Past Simple -->
       <p v-if="isOccluded === false" class="past-simple" v-html="sentences.past.simple"></p>
       <p v-else class="past-simple">
@@ -59,6 +66,7 @@
 
       <!-- Past Perfect -->
       <h3 class="perfect">Perfect</h3>
+
       <p v-if="isOccluded === false" class="past-perfect" v-html="sentences.past.perfect"></p>
       <p v-else class="past-perfect">
         <img :src="require('../assets/img/clouds/' + randomOccluderImage())" :width="occluderImageWidth" />
@@ -168,12 +176,12 @@ export default {
   },
   data() {
     return {
-
+      tenseType: '',
       playGame: `<button> Start Game </button>`,
       isGameStarted: false,
       isOccluded: false,
       isContinuous: true,
-      selectedSentence: "",
+      currentDisplayNumber: 0,
       occluderImages: [`Yellow_Cloud.png`, `Yellow_Cloud2.png`],
       occluderImageWidth: `100%`,
       score: 0,
@@ -197,30 +205,93 @@ export default {
           perfectContinuous: `I will have been <em class="verb">playing</em>.`,
         }
       },
-      dummyData: { name: "hi" },
-
+      shuffledSentenceList: [],
     }
   },
   methods: {
-    startGame() {
-      this.isGameStarted = true;
-      this.occludeSentences();
-      this.randomSentence();
-    },
-    randomSentence() {
-      const sentenceList = this.sentenceList;
-      let randomSentence = sentenceList[Math.floor(Math.random() * sentenceList.length)]
-      console.log(randomSentence);
-      this.selectedSentence = randomSentence;
-    },
     switchContinuousProgressive() {
       this.isContinuous = !this.isContinuous;
       console.log("switched!");
       console.log(this.isContinuous);
     },
+    startGame() {
+      this.isGameStarted = true;
+      this.occludeSentences();
+      this.shuffleSentences();
+    },
+    shuffleSentences() {
+      let list = this.sentenceList;
+      let i = list.length;
+      while (--i > 0) {
+        let temp = Math.floor(Math.random() * (i + 1));
+        [list[temp], list[i]] = [list[i], list[temp]];
+      }
+      this.shuffledSentenceList = list;
+    },
+    checkTenseType() {
+      // find the corret tense type for the current displayed item in Game mode
+      let currentSentence = this.shuffledSentenceList[this.currentDisplayNumber];
+      switch (currentSentence) {
+        // Past Tense Cases
+        case this.sentences.past.simple:
+          console.log("This is past simple tense!");
+          this.tenseType = "past-simple";
+          break;
+        case this.sentences.past.continuous:
+          console.log("This is past continuous tense!");
+          this.tenseType = "past-continuous";
+          break;
+        case this.sentences.past.perfect:
+          console.log("This is past perfect tense!");
+          this.tenseType = "past-perfect";
+          break;
+        case this.sentences.past.perfectContinuous:
+          console.log("This is past perfect continuous tense!");
+          this.tenseType = "past-perfect-continuous";
+          break;
+        // Present Tense Cases
+        case this.sentences.present.simple:
+          console.log("This is present simple tense!");
+          this.tenseType = "present-simple";
+          break;
+        case this.sentences.present.continuous:
+          console.log("This is present continuous tense!");
+          this.tenseType = "present-continuous";
+          break;
+        case this.sentences.present.perfect:
+          console.log("This is present perfect tense!");
+          this.tenseType = "present-perfect";
+          break;
+        case this.sentences.present.perfectContinuous:
+          console.log("This is present perfect continuous tense!");
+          this.tenseType = "present-perfect-continuous";
+          break;
+        // Future Tense Cases
+        case this.sentences.future.simple:
+          console.log("This is future simple tense!");
+          this.tenseType = "future-simple";
+          break;
+        case this.sentences.future.continuous:
+          console.log("This is future continuous tense!");
+          this.tenseType = "future-continuous";
+          break;
+        case this.sentences.future.perfect:
+          console.log("This is future perfect tense!");
+          this.tenseType = "future-perfect";
+          break;
+        case this.sentences.future.perfectContinuous:
+          console.log("This is future perfect continuous tense!");
+          this.tenseType = "future-perfect-continuous";
+          break;
+        default:
+          console.log("Give me a sentence!");
+      }
+    },
+    showNextSentence() {
+      this.currentDisplayNumber = this.currentDisplayNumber + 1;
+    },
     occludeSentences() {
       this.isOccluded = true;
-      console.log(this.isOccluded);
     },
     randomOccluderImage() {
       const images = this.occluderImages;
@@ -239,7 +310,7 @@ export default {
           sentenceList.push(sentence);
         }
       }
-      return sentenceList
+      return sentenceList;
     }
   }
 }

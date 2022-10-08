@@ -125,7 +125,8 @@ input[type="text" i] {
     color: var(--primary-text-color);
     display: grid;
     grid-template: 0.25fr 1fr repeat(4, 1fr)/ 1fr repeat(3, 1fr);
-    grid-template-areas: "score-area         timeline-heading          timeline-heading                  timeline-heading"
+    grid-template-areas:
+        "score-area         timeline-heading          timeline-heading                  timeline-heading"
         "score-area         past                      present                           future"
         "simple             past-simple               present-simple                    future-simple"
         "continuous         past-continuous           present-continuous                future-continuous"
