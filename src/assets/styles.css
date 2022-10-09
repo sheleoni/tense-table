@@ -42,6 +42,16 @@ nav ul li {
     margin-inline: 2rem;
 }
 
+#answer {
+    color: var(--keyword-color);
+}
+
+#next-question {
+    position: relative;
+    left: 45%;
+    margin-block-start: 10px;
+}
+
 a {
     text-decoration: none;
 }
