@@ -1,5 +1,5 @@
 <template>
-    <section>hi</section>
+    <section>hi this is the error page.</section>
 </template>
 <script>
 export default {

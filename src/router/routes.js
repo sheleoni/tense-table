@@ -16,7 +16,7 @@ const routes = [
     },
     {
         path: '/404',
-        compnent: () => import('@/pages/error/index.vue')
+        component: () => import('@/pages/error/index.vue')
     },
     {
         path: '*', redirect: '/404'
