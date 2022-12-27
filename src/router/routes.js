@@ -1,9 +1,4 @@
 const routes = [
-    // {
-    //     path: '',
-    //     component: () => import('@/layouts/Empty.vue'),
-    //     children: [],
-    // },
     {
         path: '/',
         component: () => import('@/layouts/User.vue'),
@@ -11,6 +6,16 @@ const routes = [
             {
                 path: '',
                 component: () => import('@/pages/home/index.vue'),
+            },
+        ],
+    },
+    {
+        path: '/user',
+        component: () => import('@/layouts/User.vue'),
+        children: [
+            {
+                path: '',
+                component: () => import('@/pages/user/index.vue'),
             },
         ],
     },
