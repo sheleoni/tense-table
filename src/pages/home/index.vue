@@ -4,6 +4,7 @@
     <!-- /// Tense Table Start /// -->
     <section id="app">
 
+
         <!-- Game area: sentence display -->
         <section id="gameDisplay">
             <template v-if="isGameStarted">
@@ -38,11 +39,17 @@
 
             </section>
 
+            <!-- Table Cells -->
             <!-- /// Past Tense /// -->
             <h2 class="past">Past</h2>
 
             <h3 class="simple">Simple</h3>
             <!-- Past Simple -->
+
+            <TableCell :sentenceHTMLContent="sentences.past.simple" :isOccluded="isOccluded['past-simple']"
+                cellClass="past-simple" tenseType="past-simple" :randomImage="randomOccluderImage"
+                :imageWidth="occluderImageWidth" />
+
 
             <p v-if="isOccluded['past-simple'] === false" class="past-simple" data-tense-type="past-simple"
                 v-html="sentences.past.simple">
@@ -191,12 +198,15 @@
 </template>
   
 <script>
-// import { isContext } from 'vm';
 
-// import internal from 'stream';
+import TableCell from '@/components/TableCell.vue';
+
 
 export default {
     name: 'TenseTable',
+    components: {
+        TableCell
+    },
     props: {
         msg: String
     },
@@ -233,7 +243,6 @@ export default {
                 },
             },
             // occlusion for each cell
-            // isOccluded: false,
             isOccluded: {
                 'past-simple': false,
                 'past-continuous': false,
@@ -343,24 +352,19 @@ export default {
             }
         },
         checkAnswer() {
-
             this.getCellTenseType();
             if (this.selectedTenseType === this.answerTenseType) {
-                console.log(this.selectedTenseType);
-                console.log(this.answerTenseType);
                 console.log("correct!");
                 this.score = this.score + 1;
-                // console.log(this.isOccluded);
-                // next: reveal sentence of that cell
                 const sentenceObject = JSON.parse(JSON.stringify(this.isOccluded));
+                console.log("The sentence object is:");
                 console.log(sentenceObject);
 
                 console.log(this.isOccluded);
 
+                console.log("(this.isOccluded === sentenceObject);");
                 console.log(this.isOccluded === sentenceObject);
 
-                // this.sentenceObject[this.selectedTenseType] = false;
-                // console.log(this.sentenceObject[this.selectedTenseType]);
                 console.log(this.isOccluded.futureContinuous);
                 this.$set(this.isOccluded, this.answerTenseType, false);
 
@@ -370,6 +374,9 @@ export default {
         },
         getCellTenseType() {
             this.selectedTenseType = event.target.getAttribute("data-tense-type");
+            console.log(this.selectedTenseType);
+            console.log(typeof (this.selectedTenseType));
+
         },
         showNextSentence() {
             this.currentDisplayNumber = this.currentDisplayNumber + 1;
@@ -396,6 +403,7 @@ export default {
     },
     computed: {
         sentenceList: function () {
+            // flattens the 2-dimensional object "sentences" to a 1 dimensional array (from sentences.past.simple to sentenceList[0].)
             const sentenceObject = JSON.parse(JSON.stringify(this.sentences));
             const sentenceList = [];
             for (let tenseType in sentenceObject) {
@@ -412,8 +420,5 @@ export default {
     }
 }
 
-
-  // console.log("hello yo!");
-  // console.log(sentenceList); out of scope? out of Vue Scope
 </script>
   
