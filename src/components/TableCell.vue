@@ -1,9 +1,9 @@
 <template>
 
-    <section>
-        <p v-if="isOccluded === false" :class="cellClass" :data-tense-type="tenseType" v-html="sentenceHTMLContent"></p>
-        <p v-else :class="cellClass" :data-tense-type="tenseType" @click="checkAnswer()">
-            <img :src="require('../assets/img/clouds/' + randomImage())" :data-tense-type="tenseType" width="100%" />
+    <section :data-tense-type="tenseType" :class="cellClass">
+        <p v-if="isOccluded === false" v-html="sentenceHTMLContent" :data-tense-type="tenseType"></p>
+        <p v-else @click="checkAnswer()" :data-tense-type="tenseType">
+            <img :src="require('../assets/img/clouds/' + randomImage())" width="100%" :data-tense-type="tenseType" />
         </p>
     </section>
 
@@ -21,6 +21,7 @@ export default {
         tenseType: String,
         randomImage: Function,
         imageWidth: String,
+        checkAnswer: Function,
     }
 }
 
